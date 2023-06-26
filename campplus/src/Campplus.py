@@ -62,29 +62,3 @@ class Campplus:
             self.register_speaker(emb)
 
         return self.memory.shape[0] - 1
-
-
-def onnx_text():
-
-    audio_file1 = '/Users/cenglingfan/Downloads/a_cn_16k.wav'
-    audio_file2 = '/Users/cenglingfan/Downloads/b_cn_16k.wav'
-    audio_file3 = '/Users/cenglingfan/Downloads/wave_test.wav'
-
-    # threshold 越高区分度越高，返回的说话人身份越多
-    model = Campplus(threshold=0.5)
-    index = model.recognize(audio_file1)
-    print(index)
-    index = model.recognize(audio_file1)
-    print(index)
-    index = model.recognize(audio_file2)
-    print(index)
-    index = model.recognize(audio_file2)
-    print(index)
-    index = model.recognize(audio_file3)
-    print(index)
-    index = model.recognize(audio_file3)
-    print(index)
-
-if __name__ == '__main__':
-    
-    onnx_text()
