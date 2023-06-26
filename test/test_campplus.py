@@ -7,8 +7,8 @@ from campplus.src.Campplus import Campplus
 
 
 def campplus_text():
-    audio_file1 = 'a_cn_16k.wav'
-    audio_file2 = 'b_cn_16k.wav'
+    audio_file1 = 'test/a_cn_16k.wav'
+    audio_file2 = 'test/b_cn_16k.wav'
 
     # threshold 越高区分度越高，返回的说话人身份越多
     model = Campplus(threshold=0.7)
