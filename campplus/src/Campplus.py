@@ -1,3 +1,4 @@
+import os
 from typing import Union
 
 import onnxruntime
@@ -13,7 +14,7 @@ class Campplus:
         :param onnx_path: onnx model file path
         :param threshold: threshold of speaker embedding similarity
         """
-        self.onnx = onnx_path or Path(__file__).parent.parent / 'onnx/campplus.onnx'
+        self.onnx = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'onnx/campplus.onnx')
         self.sess = onnxruntime.InferenceSession(self.onnx)
         self.output_name = [nd.name for nd in self.sess.get_outputs()]
         self.threshhold = threshold
