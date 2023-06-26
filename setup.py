@@ -9,9 +9,9 @@ from pathlib import Path
 from setuptools import find_namespace_packages, setup
 
 dirname = Path(os.path.dirname(__file__))
-version_file = dirname / "version.txt"
-with open(version_file, "r") as f:
-    version = f.read().strip()
+
+
+version = "v0.0.1"
 
 requirements = {
     "install": [
