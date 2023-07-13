@@ -23,8 +23,10 @@ class Campplus:
     def compute_cos_similarity(self, emb):
 
         assert len(emb.shape) == 2, "emb must be length * 80"
-        cos_sim = emb.dot(self.memory.T) / np.linalg.norm(emb)
-        return cos_sim
+        cos_sim = emb.dot(self.memory.T) / (np.linalg.norm(emb) * np.linalg.norm(self.memory, axis=1))
+        cos_sim[np.isneginf(cos_sim)] = 0
+
+        return 0.5 + 0.5 * cos_sim
 
     def register_speaker(self, emb: np.ndarray):
         """
@@ -34,7 +36,7 @@ class Campplus:
         :return:
         """
         assert len(emb.shape) == 2, "emb must be length * 80"
-        self.memory = np.concatenate((self.memory, emb / np.linalg.norm(emb), ))
+        self.memory = np.concatenate((self.memory, emb, ))
 
     def embedding(self, feature: np.ndarray):
         feed_dict = {
