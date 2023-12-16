@@ -63,6 +63,7 @@ class Campplus:
 
         if sim[max_sim_index] <= self.threshhold:
             self.register_speaker(emb)
+            max_sim_index = len(self.memory) - 1
 
         # return self.memory.shape[0] - 1
         return max_sim_index
