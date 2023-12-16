@@ -39,7 +39,7 @@ def read_wav_bytes(data: bytes):
     ) = struct.unpack_from("<4sL4s4sLHHLLHH4sL", info)
     # shortArray each element is 16bit
     short_array = array.array("h")
-    short_array.frombytes(data)
+    short_array.frombytes(frames)
     data = np.array(short_array, dtype="float16") / (1 << 15)
     return data, sample_rate
 
@@ -66,6 +66,6 @@ def extract_feature(audio: Union[str, Path, bytes]):
         mat[i, :] = fbank_fn.get_frame(i)
     feature = mat.astype(np.float32)
 
-    feature = feature - feature.mean()
+    feature = feature - feature.mean(0, keepdims=True)
     feature = feature[None, ...]
     return feature
